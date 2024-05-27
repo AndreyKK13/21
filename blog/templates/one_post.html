@@ -1,5 +1,27 @@
-{{post.title}}<br>
-{{post.text}}<br>
-{% for com in coments %}
-    <p>{{com.text}}</p>
-{% endfor %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>name {{post.title}}</p>
+    <p>{{post.text}}</p>
+    {% for com in coments %}
+        <p>коментарий{{com.id}} от {{com.author.username}}:</p>
+        <p>{{com.text}}</p>
+    {% endfor %}
+      {% if user.is_authenticated %}
+    <form metod="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+</body>
+</html>
+{% else %}
+
+
